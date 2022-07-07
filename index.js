@@ -20,11 +20,15 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }); 
 
 app.post('/upload', upload.single('file'), function(req, res) {
-  console.log("received req")
-  const title = req.body.title;
-  const file = req.file; 
-   console.log("saved "+title)
-  res.sendStatus(200);
+  const filename = req.filename;
+  try{ 
+	  const file = req.file; 
+	  console.log("saved "+filename)
+	  res.sendStatus(200);
+	} catch {
+	  console.log("cannot save "+filename)
+ 	  res.sendStatus(500);
+	}
 });
  
 const port = process.env.PORT || 4077;
