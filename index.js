@@ -7,7 +7,7 @@ const os = require('os');
 const _ = require('lodash');
 
 const app = express();
-
+app.use(cors());
 const multer  = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
